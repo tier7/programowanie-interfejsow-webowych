@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planszuwkarnia - gry planszowe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+    <h1>PLANSZUWKARNIA</h1>
+    <div class="top-buttons">
+        <button type="button" id="loginBtn">logowanie</button>
+        <button type="button" id="cartBtn">koszyk</button>
+    </div>
+</header>
+
+<main class="container">
+    <div class="main-layout">
+
+        <div class="left-column">
+            <section class="filters">
+                <h2>wyszukiwarka gier</h2>
+
+                <div class="filters-grid">
+                    <input type="text" id="filterTitle" placeholder="tytuł gry">
+                    <input type="number" id="filterMinPrice" placeholder="cena od">
+                    <input type="number" id="filterMaxPrice" placeholder="cena do">
+                    <input type="text" id="filterType" placeholder="rodzaj">
+                    <input type="number" id="filterPlayers" placeholder="liczba graczy">
+                    <input type="text" id="filterPublisher" placeholder="wydawnictwo">
+                    <input type="text" id="filterTime" placeholder="czas gry">
+                </div>
+
+                <button type="button" id="filterBtn">filtruj</button>
+            </section>
+
+            <section class="add-product">
+                <h2>dodawanie nowej gry</h2>
+
+                <form id="addProductForm">
+                    <div class="form-grid">
+                        <input type="text" id="newGameTitle" placeholder="nazwa gry" required>
+                        <input type="number" id="newGamePrice" placeholder="cena" required>
+                        <input type="text" id="newGameType" placeholder="rodzaj" required>
+                        <input type="number" id="newGamePlayers" placeholder="liczba graczy" required>
+                        <input type="text" id="newGamePublisher" placeholder="wydawnictwo" required>
+                        <input type="text" id="newGameTime" placeholder="czas gry" required>
+                    </div>
+
+                    <textarea id="newGameDescription" placeholder="opis gry" required></textarea>
+                    <button type="button" id="addProductBtn">dodaj produkt</button>
+                </form>
+            </section>
+        </div>
+
+        <div class="right-column">
+            <section class="products-section">
+                <h2>lista gier</h2>
+
+                <div class="products-list" id="productsList">
+                    <div class="product-card">
+                        <h3>7 cudów świata</h3>
+                        <img src="7cud.png" alt="7 cudów świata" class="product-image">
+                        <p><strong>cena:</strong> 129 zł</p>
+                        <p><strong>rodzaj:</strong> strategiczna</p>
+                        <p><strong>liczba graczy:</strong> 3-7</p>
+                        <p><strong>wydawnictwo:</strong> Rebel</p>
+                        <a href="index2.html" class="details-btn">pokaż szczegóły</a>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>7 cudów świata</h3>
+                        <img src="7cud.png" alt="7 cudów świata" class="product-image">
+                        <p><strong>cena:</strong> 129 zł</p>
+                        <p><strong>rodzaj:</strong> strategiczna</p>
+                        <p><strong>liczba graczy:</strong> 3-7</p>
+                        <p><strong>wydawnictwo:</strong> Rebel</p>
+                        <a href="index2.html" class="details-btn">pokaż szczegóły</a>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>7 cudów świata</h3>
+                        <img src="7cud.png" alt="7 cudów świata" class="product-image">
+                        <p><strong>cena:</strong> 129 zł</p>
+                        <p><strong>rodzaj:</strong> strategiczna</p>
+                        <p><strong>liczba graczy:</strong> 3-7</p>
+                        <p><strong>wydawnictwo:</strong> Rebel</p>
+                        <a href="index2.html" class="details-btn">pokaż szczegóły</a>
+                    </div>
+
+                    <div class="product-card">
+                        <h3>7 cudów świata</h3>
+                        <img src="7cud.png" alt="7 cudów świata" class="product-image">
+                        <p><strong>cena:</strong> 129 zł</p>
+                        <p><strong>rodzaj:</strong> strategiczna</p>
+                        <p><strong>liczba graczy:</strong> 3-7</p>
+                        <p><strong>wydawnictwo:</strong> Rebel</p>
+                        <a href="index2.html" class="details-btn">pokaż szczegóły</a>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+</main>
+
+</body>
+</html>
