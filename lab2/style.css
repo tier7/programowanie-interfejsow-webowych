@@ -1,0 +1,265 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	padding: 18px;
+	font-family: Arial, sans-serif;
+	background-color: #c8ab92;
+	color: #000000;
+}
+
+h1 {
+	margin-top: 0;
+	margin-bottom: 18px;
+	text-align: center;
+}
+
+h2 {
+	margin-top: 0;
+	text-align: center;
+}
+
+.app {
+	max-width: 1200px;
+	margin: 0 auto;
+}
+
+.layout {
+	display: flex;
+	gap: 22px;
+	align-items: stretch;
+}
+
+.box {
+	border: 5px solid #000000;
+	background-color: #d8bda8;
+	padding: 16px;
+}
+
+.menu-box {
+	width: 48%;
+	min-height: 700px;
+}
+
+.right-column {
+	width: 52%;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	min-height: 700px;
+}
+
+.list-box {
+	flex: 1;
+	min-height: 0;
+}
+
+.trash-box {
+	min-height: 170px;
+}
+
+.form-block {
+	margin-bottom: 24px;
+}
+
+.form-block:last-child {
+	margin-bottom: 0;
+}
+
+label {
+	display: block;
+	margin-bottom: 6px;
+	font-size: 18px;
+}
+
+input[type="text"],
+select,
+button {
+	font: inherit;
+}
+
+input[type="text"],
+select {
+	width: 100%;
+	margin-bottom: 12px;
+	padding: 10px;
+	border: 2px solid #000000;
+	background-color: #e7d2c2;
+}
+
+button {
+	padding: 10px 12px;
+	border: 2px solid #000000;
+	background-color: #cfb097;
+	cursor: pointer;
+	text-align: center;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+button:hover {
+	background-color: #be9b80;
+}
+
+.center-button {
+	text-align: center;
+	margin-top: 4px;
+}
+
+.center-button button {
+	min-width: 170px;
+}
+
+.center-button-small {
+	text-align: center;
+	margin-top: 4px;
+}
+
+.center-button-small button {
+	min-width: 140px;
+}
+
+.trash-button-wrap {
+	text-align: center;
+	margin-top: 16px;
+}
+
+.checkbox-row {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.list-controls {
+	display: flex;
+	gap: 10px;
+	align-items: center;
+	margin-bottom: 12px;
+}
+
+.list-controls select {
+	flex: 1;
+	margin-bottom: 0;
+}
+
+.list-controls button {
+	min-width: 120px;
+}
+
+.task-list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.task-item {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 10px;
+}
+
+.task-main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	text-align: left;
+	background-color: #e7d2c2;
+	padding: 10px 12px;
+}
+
+.task-item.done .task-main {
+	color: #5f5f5f;
+	background-color: #bea896;
+}
+
+.task-item.done .task-text {
+	text-decoration: line-through;
+}
+
+.task-text {
+	display: block;
+	width: 100%;
+	word-break: break-word;
+	line-height: 1.3;
+}
+
+.task-date {
+	display: block;
+	margin-top: 10px;
+	font-size: 14px;
+	color: #4d4d4d;
+	text-decoration: none;
+	line-height: 1.3;
+}
+
+.delete-button {
+	width: 50px;
+	flex-shrink: 0;
+}
+
+.empty-text {
+	margin: 0;
+}
+
+#trash-content {
+	min-height: 24px;
+}
+
+#undo-button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+dialog {
+	width: 420px;
+	max-width: calc(100% - 30px);
+	border: 3px solid #000000;
+	padding: 18px;
+	background-color: #dcc4b2;
+}
+
+dialog::backdrop {
+	background-color: rgba(0, 0, 0, 0.35);
+}
+
+.dialog-buttons {
+	display: flex;
+	justify-content: flex-end;
+	gap: 10px;
+	margin-top: 14px;
+}
+
+@media (max-width: 900px) {
+	.layout {
+		flex-direction: column;
+	}
+
+	.menu-box,
+	.right-column {
+		width: 100%;
+	}
+
+	.menu-box,
+	.list-box,
+	.trash-box {
+		min-height: auto;
+	}
+
+	.right-column {
+		min-height: auto;
+	}
+
+	.list-controls {
+		flex-direction: column;
+		align-items: stretch;
+	}
+
+	.list-controls button {
+		width: 100%;
+	}
+}

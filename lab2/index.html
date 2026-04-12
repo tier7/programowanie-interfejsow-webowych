@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ToDo list</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="script.js" defer></script>
+</head>
+<body>
+	<main class="app">
+		<h1>ToDo list</h1>
+		<div class="layout">
+			<section class="box menu-box">
+				<h2>Menu</h2>
+				<form id="task-form" class="form-block">
+					<label for="task-input">Nowe zadanie:</label>
+					<input id="task-input" type="text" placeholder="Wpisz zadanie">
+					<label for="list-select">Do listy:</label>
+					<select id="list-select"></select>
+					<div class="center-button">
+						<button type="submit">Dodaj zadanie</button>
+					</div>
+				</form>
+				<form id="list-form" class="form-block">
+					<label for="new-list-input">Nowa lista</label>
+					<input id="new-list-input" type="text" placeholder="Wpisz nazwę listy">
+					<div class="center-button-small">
+						<button type="submit">Dodaj listę</button>
+					</div>
+				</form>
+				<div class="form-block">
+					<label for="search-input">Szukaj</label>
+					<input id="search-input" type="text" placeholder="Szukaj w zadaniach">
+					<label class="checkbox-row">
+						<input id="case-insensitive" type="checkbox" checked>
+						case-insensitive
+					</label>
+				</div>
+			</section>
+			<div class="right-column">
+				<section class="box list-box">
+					<div class="list-controls">
+						<span>Lista:</span>
+						<select id="current-list-select"></select>
+						<button id="collapse-button" type="button">Zwiń</button>
+					</div>
+					<div id="single-list-container"></div>
+				</section>
+				<section class="box trash-box">
+					<h2>Kosz</h2>
+					<p id="trash-content">Brak usuniętych zadań</p>
+					<div class="trash-button-wrap">
+						<button id="undo-button" type="button" disabled>
+						    Cofnij ostatnie usunięcie
+						</button>
+					</div>
+				</section>
+			</div>
+		</div>
+	</main>
+	<dialog id="delete-dialog">
+		<p id="delete-question"></p>
+		<div class="dialog-buttons">
+			<button id="cancel-delete" type="button">Anuluj</button>
+			<button id="confirm-delete" type="button">Usuń</button>
+		</div>
+	</dialog>
+</body>
+</html>
