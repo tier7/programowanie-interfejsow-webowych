@@ -1,0 +1,96 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner() {
+      return isSignedIn() && resource.data.ownerUid == request.auth.uid;
+    }
+
+    function validCommonFields() {
+      return request.resource.data.title is string
+        && request.resource.data.publisher is string
+        && request.resource.data.type is string
+        && request.resource.data.price_pln is number
+        && request.resource.data.min_players is number
+        && request.resource.data.max_players is number
+        && request.resource.data.avg_play_time_minutes is number;
+    }
+
+    function validAuctionStructure() {
+      return request.resource.data.auction == null || (
+        request.resource.data.auction.startPrice is number
+        && request.resource.data.auction.currentBid is number
+        && request.resource.data.auction.bidCount is number
+        && (
+          request.resource.data.auction.endAt == null
+          || request.resource.data.auction.endAt is string
+        )
+      );
+    }
+
+    function isValidCreate() {
+      return isSignedIn()
+        && validCommonFields()
+        && validAuctionStructure()
+        && (
+          request.resource.data.ownerUid == request.auth.uid
+          || request.resource.data.source == "api"
+        );
+    }
+
+    function unchangedBaseFields() {
+      return request.resource.data.ownerUid == resource.data.ownerUid
+        && request.resource.data.ownerEmail == resource.data.ownerEmail
+        && request.resource.data.title == resource.data.title
+        && request.resource.data.publisher == resource.data.publisher
+        && request.resource.data.type == resource.data.type
+        && request.resource.data.price_pln == resource.data.price_pln
+        && request.resource.data.min_players == resource.data.min_players
+        && request.resource.data.max_players == resource.data.max_players
+        && request.resource.data.avg_play_time_minutes == resource.data.avg_play_time_minutes
+        && request.resource.data.description == resource.data.description
+        && request.resource.data.images == resource.data.images
+        && request.resource.data.is_expansion == resource.data.is_expansion
+        && request.resource.data.source == resource.data.source;
+    }
+
+    function isPurchaseUpdate() {
+      return isSignedIn()
+        && resource.data.isAvailable == true
+        && request.resource.data.isAvailable == false
+        && request.resource.data.boughtByUid == request.auth.uid
+        && unchangedBaseFields()
+        && request.resource.data.auction == resource.data.auction;
+    }
+
+    function isAuctionBidUpdate() {
+      return isSignedIn()
+        && resource.data.auction != null
+        && request.resource.data.auction != null
+        && resource.data.isAvailable == true
+        && request.resource.data.isAvailable == true
+        && request.resource.data.boughtByUid == resource.data.boughtByUid
+        && request.resource.data.boughtByEmail == resource.data.boughtByEmail
+        && unchangedBaseFields()
+        && request.resource.data.auction.startPrice == resource.data.auction.startPrice
+        && request.resource.data.auction.endAt == resource.data.auction.endAt
+        && request.resource.data.auction.currentBid is number
+        && request.resource.data.auction.currentBid > resource.data.auction.currentBid
+        && request.resource.data.auction.currentBid < resource.data.price_pln
+        && request.resource.data.auction.currentBidderUid == request.auth.uid
+        && request.resource.data.auction.currentBidderEmail is string
+        && request.resource.data.auction.bidCount is number
+        && request.resource.data.auction.bidCount == resource.data.auction.bidCount + 1;
+    }
+
+    match /games/{gameId} {
+      allow read: if true;
+      allow create: if isValidCreate();
+      allow update: if isOwner() || isPurchaseUpdate() || isAuctionBidUpdate();
+      allow delete: if isOwner();
+    }
+  }
+}
